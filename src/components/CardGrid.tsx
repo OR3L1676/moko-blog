@@ -1,10 +1,7 @@
-import { useCardArrData } from "@/hooks/useCardArrData";
-import Card, { CardProp } from "./Card";
-import { Category } from "./Menu";
+import Card  from "./Card";
 import { CardContext } from "@/hooks/context";
 import { useContext } from "react";
-import Form from "./Form";
-import { Button } from "./ui/button";
+
 import Modal from "./Modal";
 
 const CardGrid = () => {

@@ -33,7 +33,7 @@ const Form = ({ blog, closeModal, mode }: Props) => {
     category: z.enum(["design", "food", "technology"]),
     header: z.string().min(3, "Header must be at least 3 characters."),
     body: z.string().min(3, "Body must be at least 3 characters."),
-    image: z.string(), // Allow any string for edit mode
+    image: z.string(),
   });
 
   const schema = mode === "create" ? createSchema : editSchema;
@@ -70,7 +70,7 @@ const Form = ({ blog, closeModal, mode }: Props) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col justify-center text-left w-full mt-3">
-        <section className="mb-3 flex flex-col justify-between">
+        <div className="mb-3 flex flex-col justify-between">
           <label htmlFor="category">Category</label>
           <select
             {...register("category")}
@@ -84,9 +84,9 @@ const Form = ({ blog, closeModal, mode }: Props) => {
           {errors.category && (
             <p className="text-red-600">{errors.category.message}</p>
           )}
-        </section>
+        </div>
 
-        <section className="mb-3 flex flex-col justify-between">
+        <div className="mb-3 flex flex-col justify-between">
           <label htmlFor="picture">Pick an image</label>
           <input
             {...register("image")}
@@ -98,9 +98,9 @@ const Form = ({ blog, closeModal, mode }: Props) => {
           {errors.image && (
             <p className="text-red-600">{errors.image.message}</p>
           )}
-        </section>
+        </div>
 
-        <section className="mb-3 flex flex-col justify-between">
+        <div className="mb-3 flex flex-col justify-between">
           <label htmlFor="header">Header</label>
           <textarea
             {...register("header")}
@@ -111,9 +111,9 @@ const Form = ({ blog, closeModal, mode }: Props) => {
           {errors.header && (
             <p className="text-red-600">{errors.header.message}</p>
           )}
-        </section>
+        </div>
 
-        <section className="mb-3 flex flex-col justify-between">
+        <div className="mb-3 flex flex-col justify-between">
           <label htmlFor="body">Body</label>
           <textarea
             {...register("body")}
@@ -122,7 +122,7 @@ const Form = ({ blog, closeModal, mode }: Props) => {
             className="border-blue-400 border-solid border-2 rounded-md h-24"
           ></textarea>
           {errors.body && <p className="text-red-600">{errors.body.message}</p>}
-        </section>
+        </div>
 
         <Button variant={"ghost"} type="submit">
           Submit
