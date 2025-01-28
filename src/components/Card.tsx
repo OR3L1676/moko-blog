@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import Modal from "./Modal";
 import { FaTrashAlt } from "react-icons/fa";
 import { CardContext } from "../hooks/context";
+import { useNavigate } from "react-router";
 
 export interface CardProp {
   id: number;
@@ -18,22 +19,37 @@ const Card = ({ card: { body, category, header, id, image } }: Props) => {
   const upCaseCategory = category.toUpperCase();
   const [isHover, setIsHover] = useState(false);
   const blogObject = { image, category, header, body, id };
+  const navigate = useNavigate();
 
   const { deleteBlog } = useContext(CardContext)!;
 
+  const handleNavigate = () => {
+    navigate(`/blog/${id}`);
+  };
+
   return (
     <div
-      className="w-72 h-96"
+      className="w-72 h-96 cursor-pointer"
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
+      onClick={handleNavigate}
     >
       <header className="relative">
         {isHover && (
           <div className="absolute top-4 right-3">
             <div className="flex justify-between w-10">
-              <Modal mode="edit" blog={blogObject} />
+              <div
+                className="mt-1"
+                onClick={(event) => {
+                  event.stopPropagation();
+                }}
+              >
+                <Modal mode="edit" blog={blogObject} />
+              </div>
+
               <button
-                onClick={() => {
+                onClick={(event) => {
+                  event.stopPropagation();
                   deleteBlog(id);
                   console.log(id);
                 }}

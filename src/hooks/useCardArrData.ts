@@ -121,6 +121,10 @@ export const useCardArrData = () => {
   const [visibleCards, setVisibleCards] = useState<CardProp[]>(cards);
   const [idCounter, setIdCounter] = useState<number>(cards.length + 1);
 
+  const getBlogById = (id: number): CardProp | undefined => {
+    return visibleCards.find((blog) => blog.id === id);
+  };
+
   const idGenerator = () => {
     setIdCounter((prev) => prev + 1);
     return idCounter;
@@ -171,5 +175,6 @@ export const useCardArrData = () => {
     changeCategory,
     idGenerator,
     createBlog,
+    getBlogById,
   };
 };

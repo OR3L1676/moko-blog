@@ -1,4 +1,4 @@
-import Card, { CardProp } from "./Card";
+import Card  from "./Card";
 import { CardContext } from "@/hooks/context";
 import { useContext } from "react";
 
