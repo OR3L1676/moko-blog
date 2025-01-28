@@ -1,6 +1,6 @@
 import { CardProp } from "@/components/Card";
 import { Category } from "@/components/Menu";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import cardImage1 from "../assets/app-src/card-header-1.png";
 import cardImage2 from "../assets/app-src/card-header-2.png";
 import cardImage3 from "../assets/app-src/card-header-3.png";
@@ -121,20 +121,22 @@ export const useCardArrData = () => {
   const [visibleCards, setVisibleCards] = useState<CardProp[]>(cards);
   const [idCounter, setIdCounter] = useState<number>(cards.length + 1);
 
-  const idGenerator = () => {
+  console.log("hello");
+
+  const idGenerator = useCallback(() => {
     setIdCounter((prev) => prev + 1);
     return idCounter;
-  };
+  }, []);
 
-  const deleteBlog = (id: number) => {
+  const deleteBlog = useCallback((id: number) => {
     const updatedCards = cards.filter((card) => card.id !== id);
     setCards(updatedCards);
+    setVisibleCards(updatedCards);
+    // const updatedVisibleCards = visibleCards.filter((card) => card.id !== id);
+    // setVisibleCards(updatedVisibleCards);
+  }, []);
 
-    const updatedVisibleCards = visibleCards.filter((card) => card.id !== id);
-    setVisibleCards(updatedVisibleCards);
-  };
-
-  const changeCategory = (selectedCategory: Category) => {
+  const changeCategory = useCallback((selectedCategory: Category) => {
     const newVisibleCards =
       selectedCategory && selectedCategory !== "all"
         ? cards.filter(
@@ -143,26 +145,35 @@ export const useCardArrData = () => {
           )
         : cards;
     setVisibleCards(newVisibleCards);
-  };
+  }, []);
 
-  const updateBlog = (blogToUpdate: CardProp) => {
-    setCards((prevCards) =>
-      prevCards.map((card) =>
-        card.id === blogToUpdate.id ? { ...blogToUpdate } : card
-      )
+  const updateBlog = useCallback((blogToUpdate: CardProp) => {
+    const updatedCards = cards.map((card) =>
+      card.id === blogToUpdate.id ? { ...blogToUpdate } : card
     );
 
-    setVisibleCards((prevVisibleCards) =>
-      prevVisibleCards.map((card) =>
-        card.id === blogToUpdate.id ? { ...blogToUpdate } : card
-      )
-    );
-  };
+    setCards(updatedCards);
+    setVisibleCards(updatedCards);
+    // setCards((prevCards) =>
+    //   prevCards.map((card) =>
+    //     card.id === blogToUpdate.id ? { ...blogToUpdate } : card
+    //   )
+    // );
 
-  const createBlog = (newBlog: CardProp) => {
-    setCards((prev) => [newBlog, ...prev]);
-    setVisibleCards((prev) => [newBlog, ...prev]);
-  };
+    // setVisibleCards((prevVisibleCards) =>
+    //   prevVisibleCards.map((card) =>
+    //     card.id === blogToUpdate.id ? { ...blogToUpdate } : card
+    //   )
+    // );
+  }, []);
+
+  const createBlog = useCallback((newBlog: CardProp) => {
+    const updatedCards = [newBlog, ...cards];
+    setCards(updatedCards);
+    setVisibleCards(updatedCards);
+    // setCards((prev) => [newBlog, ...prev]);
+    // setVisibleCards((prev) => [newBlog, ...prev]);
+  }, []);
 
   return {
     visibleCards,
