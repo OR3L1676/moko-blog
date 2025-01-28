@@ -125,10 +125,6 @@ export const useCardArrData = () => {
     return visibleCards.find((blog) => blog.id === id);
   };
 
-  const getBlogById = (id: number): CardProp | undefined => {
-    return visibleCards.find((blog) => blog.id === id);
-  };
-
   console.log("hello");
 
   const idGenerator = useCallback(() => {
