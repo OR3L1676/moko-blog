@@ -43,7 +43,7 @@ const Modal = ({ mode, blog }: Props) => {
 
       {mode === "create" && (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
-          <DialogTrigger onClick={openModal}>
+          <DialogTrigger asChild onClick={openModal}>
             <Button className="bg-blue-400 hover:bg-blue-300">
               Add Blog <FaPlusCircle />
             </Button>

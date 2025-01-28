@@ -1,5 +1,6 @@
 import { FaTwitter, FaInstagram, FaFacebook, FaWifi } from "react-icons/fa";
 import Menu from "./Menu";
+import { NavLink } from "react-router";
 
 const NavBar = () => {
   return (
@@ -10,20 +11,23 @@ const NavBar = () => {
             <Menu version={1} />
           </div>
           <div className="flex justify-start sm:justify-center">
-            <h3 className="text-white font-bold font-mono text-4xl shadow-custom-multi shadow-sm">
+            <NavLink
+              to="/"
+              className="text-white font-bold font-mono text-4xl shadow-custom-multi shadow-sm"
+            >
               Moko
-            </h3>
+            </NavLink>
           </div>
           <div className="hidden sm:flex sm:justify-around sm:items-center sm:max-w-[500px] sm:text-white">
-            <a href="#" className="font-bold">
+            <NavLink to="/categories" className="font-bold">
               CATEGORIES
-            </a>
-            <a href="#" className="font-bold">
+            </NavLink>
+            <NavLink to="/deals" className="font-bold">
               DEALS
-            </a>
-            <a href="#" className="font-bold">
+            </NavLink>
+            <NavLink to="/about" className="font-bold">
               ABOUT
-            </a>
+            </NavLink>
           </div>
         </div>
         <div className="flex justify-end items-center">

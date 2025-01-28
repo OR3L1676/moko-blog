@@ -3,11 +3,7 @@ import Menu, { Category } from "./Menu";
 import { useCardArrData } from "@/hooks/useCardArrData";
 import { CardContext } from "@/hooks/context";
 
-interface Props {
-  onSelectedCategory: (selectedCategory: Category) => void;
-}
-
-const BrowseHeader = ({ onSelectedCategory }: Props) => {
+const BrowseHeader = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category>();
   const { changeCategory } = useContext(CardContext)!;
   return (
@@ -15,7 +11,6 @@ const BrowseHeader = ({ onSelectedCategory }: Props) => {
       <Menu
         version={2}
         onSelectedCategory={(category) => {
-          onSelectedCategory(category);
           setSelectedCategory(category);
           changeCategory(category);
         }}

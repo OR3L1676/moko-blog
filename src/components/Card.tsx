@@ -18,7 +18,9 @@ const Card = ({ card: { body, category, header, id, image } }: Props) => {
   const upCaseCategory = category.toUpperCase();
   const [isHover, setIsHover] = useState(false);
   const blogObject = { image, category, header, body, id };
+
   const { deleteBlog } = useContext(CardContext)!;
+
   return (
     <div
       className="w-72 h-96"
@@ -48,7 +50,7 @@ const Card = ({ card: { body, category, header, id, image } }: Props) => {
         />
       </header>
 
-      <body className="py-5 h-56">
+      <div className="py-5 h-56">
         <h4 className="text-blue-400 text-xs font-semibold mb-3">
           {upCaseCategory}
         </h4>
@@ -60,7 +62,7 @@ const Card = ({ card: { body, category, header, id, image } }: Props) => {
 
           <p className="text-sm line-clamp-4 break-words">{body}</p>
         </section>
-      </body>
+      </div>
     </div>
   );
 };
