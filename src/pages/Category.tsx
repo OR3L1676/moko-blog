@@ -1,5 +1,11 @@
+import OnDevelopment from "./OnDevelopment";
+
 const Category = () => {
-  return <div>hello this is the Category Page</div>;
+  return (
+    <div>
+      <OnDevelopment developmentPageName="Categories" />
+    </div>
+  );
 };
 
 export default Category;

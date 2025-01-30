@@ -1,7 +1,11 @@
-import React from "react";
+import OnDevelopment from "./OnDevelopment";
 
 const Deals = () => {
-  return <div>Hello this is the Deals Page</div>;
+  return (
+    <div>
+      <OnDevelopment developmentPageName="Deals" />
+    </div>
+  );
 };
 
 export default Deals;
